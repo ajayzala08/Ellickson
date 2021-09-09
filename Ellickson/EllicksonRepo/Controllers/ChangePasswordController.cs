@@ -22,21 +22,21 @@ namespace EllicksonRepo.Controllers
             iellicksonRepository = _iellicksonrepository;
         }
 
-        //[HttpPost]
-        //public HttpResponseMessage ChangePassword(string pwd, ChangePasswordModel model)
-        //{
-        //    HttpResponseMessage response;
-        //    var result = iellicksonRepository.ChangePassword(pwd, model);
-        //    if (result == 1)
-        //    {
-        //        response = Request.CreateResponse(HttpStatusCode.OK, "Password Changed Successfull");
-        //    }
-        //    else
-        //    {
-        //        response = Request.CreateResponse(HttpStatusCode.Unauthorized, "Fail");
-        //    }
-        //    return response;
+        [HttpPut]
+        public HttpResponseMessage Put(int id, ChangePasswordModel model)
+        {
+            HttpResponseMessage response;
+            var result = iellicksonRepository.ChangePassword(id, model);
+            if (result == 1)
+            {
+                response = Request.CreateResponse(HttpStatusCode.OK, "Password Changed Successfull");
+            }
+            else
+            {
+                response = Request.CreateResponse(HttpStatusCode.Unauthorized, "Fail");
+            }
+            return response;
 
-        //}
+        }
     }
 }

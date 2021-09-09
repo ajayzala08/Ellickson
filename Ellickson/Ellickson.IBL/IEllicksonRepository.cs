@@ -23,6 +23,6 @@ namespace Ellickson.IBL
 
         int UserLogin(LoginModel loginmodel);
 
-        int ChangePassword(string pwd, ChangePasswordModel changepwdmodel);
+        int ChangePassword(int id, ChangePasswordModel changepwdmodel);
     }
 }

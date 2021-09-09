@@ -183,6 +183,7 @@ namespace Ellickson.BL
                     DepartmentID = departmentmodel.DepartmentID,
                     Department_Name = departmentmodel.Department_Name                   
                 };
+               
                 db.Entry(dept).State = System.Data.Entity.EntityState.Modified;
                 return db.SaveChanges();
             }
@@ -224,36 +225,72 @@ namespace Ellickson.BL
             }
         }
 
-        public int ChangePassword(string pwd, ChangePasswordModel changepwdmodel)
+        public int ChangePassword(int id, ChangePasswordModel changepwdmodel)
         {
-        //    Data.tblUser_Master users = new Data.tblUser_Master()
-        //    {
-        //        EmailID = changepwdmodel.email,
-        //        Password = changepwdmodel.OldPassword
-        //    };
+            if (id == changepwdmodel.id)
+            {
+                Data.tblUser_Master dept = new Data.tblUser_Master()
+                {
+                    UserID = changepwdmodel.id,
+                    Password = changepwdmodel.NewPassword
+                };
 
-        //    var pass = db.tblUser_Master.Where(x => x.EmailID == changepwdmodel.email && x.Password == changepwdmodel.OldPassword).FirstOrDefault();
+                db.Entry(dept).State = System.Data.Entity.EntityState.Modified;
+                return db.SaveChanges();
+            }
+            else
+            {
+                return 0;
+            }
 
-        //    if (pass != null)
-        //    {
-        //        if (pass.Password == changepwdmodel.OldPassword)
-        //        {
-        //            Data.tblUser_Master newpwd = new Data.tblUser_Master()
-        //            {
-        //                Password = changepwdmodel.NewPassword
-        //            };
-        //            if (changepwdmodel.NewPassword == changepwdmodel.ConfirmNewPassword)
-        //            {
-        //                db.Entry(newpwd).State = System.Data.Entity.EntityState.Modified;
-        //                return db.SaveChanges();
-        //            }                  
-        //        }
-        //    }
-        //    else
-        //    {
-        //        return 0;
-        //    }
-           return 0;
+
+
+            //Data.tblUser_Master users = new Data.tblUser_Master()
+            //{
+            //    UserID = changepwdmodel.id,
+            //    Password = changepwdmodel.OldPassword
+            //};
+
+            //if (users.Password == changepwdmodel.OldPassword)
+            //{
+            //    users.Password = changepwdmodel.NewPassword;
+            //    users.Password = changepwdmodel.ConfirmNewPassword;
+
+            //    db.Entry(users).State = System.Data.Entity.EntityState.Modified;
+            //    return db.SaveChanges();
+            //}
+            //return 0;
+
+
+
+
+
+
+            //var pass = db.tblUser_Master.Where(x => x.UserID == changepwdmodel.id && x.Password == changepwdmodel.OldPassword).FirstOrDefault();
+
+            //if (pass != null)
+            //{
+            //    if (pass.Password == changepwdmodel.OldPassword)
+            //    {
+            //        Data.tblUser_Master newpwd = new Data.tblUser_Master()
+            //        {
+            //            UserID = changepwdmodel.id,
+            //            Password = changepwdmodel.NewPassword
+            //        };
+            //        db.Entry(newpwd).State = System.Data.Entity.EntityState.Modified;
+            //        return db.SaveChanges();
+            //        //if (changepwdmodel.NewPassword == changepwdmodel.ConfirmNewPassword)
+            //        //{
+            //        //    db.Entry(newpwd).State = System.Data.Entity.EntityState.Modified;
+            //        //    return db.SaveChanges();
+            //        //}
+            //    }
+            //}
+            //else
+            //{
+            //    return 0;
+            //}
+            //return 0;
         }
     }
 }
