@@ -20,5 +20,9 @@ namespace Ellickson.IBL
         int CreateDepartment(DepartmentModel departmentmodel);
         int EditDepartment(int id, DepartmentModel departmentmodel);
         int DeleteDepartment(int id);
+
+        int UserLogin(LoginModel loginmodel);
+
+        int ChangePassword(string pwd, ChangePasswordModel changepwdmodel);
     }
 }

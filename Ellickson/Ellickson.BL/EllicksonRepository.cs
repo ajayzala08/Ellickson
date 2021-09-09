@@ -180,6 +180,7 @@ namespace Ellickson.BL
             {
                 Data.tblDepartment_Master dept = new Data.tblDepartment_Master()
                 {
+                    DepartmentID = departmentmodel.DepartmentID,
                     Department_Name = departmentmodel.Department_Name                   
                 };
                 db.Entry(dept).State = System.Data.Entity.EntityState.Modified;
@@ -198,6 +199,61 @@ namespace Ellickson.BL
             db.tblDepartment_Master.Remove(Info);
             db.SaveChanges();
             return 1;
+        }
+
+        public int UserLogin(LoginModel loginmodel)
+        {
+            Data.tblUser_Master users = new Data.tblUser_Master()
+            {
+                EmailID = loginmodel.email,
+                Password = loginmodel.password
+            };           
+            
+            var res = db.tblUser_Master.Where(x => x.EmailID == loginmodel.email && x.Password == loginmodel.password).FirstOrDefault();
+            if (res != null)
+            {
+                if (res.EmailID == loginmodel.email && res.Password == loginmodel.password)
+                {
+                    return 1;
+                }
+                return 0;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        public int ChangePassword(string pwd, ChangePasswordModel changepwdmodel)
+        {
+        //    Data.tblUser_Master users = new Data.tblUser_Master()
+        //    {
+        //        EmailID = changepwdmodel.email,
+        //        Password = changepwdmodel.OldPassword
+        //    };
+
+        //    var pass = db.tblUser_Master.Where(x => x.EmailID == changepwdmodel.email && x.Password == changepwdmodel.OldPassword).FirstOrDefault();
+
+        //    if (pass != null)
+        //    {
+        //        if (pass.Password == changepwdmodel.OldPassword)
+        //        {
+        //            Data.tblUser_Master newpwd = new Data.tblUser_Master()
+        //            {
+        //                Password = changepwdmodel.NewPassword
+        //            };
+        //            if (changepwdmodel.NewPassword == changepwdmodel.ConfirmNewPassword)
+        //            {
+        //                db.Entry(newpwd).State = System.Data.Entity.EntityState.Modified;
+        //                return db.SaveChanges();
+        //            }                  
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return 0;
+        //    }
+           return 0;
         }
     }
 }
